@@ -78,7 +78,7 @@ class SOFocalplane(Focalplane):
             if hwfile is not None:
                 log.info(f"Loading hardware configuration from {hwfile}...")
                 hw = Hardware(hwfile)
-            elif self.telescope in ["LAT", "SAT1", "SAT2", "SAT3"]:
+            elif self.telescope in ["LAT", "SAT1", "SAT2", "SAT3", "SAT4"]:
                 log.info("Simulating default hardware configuration")
                 hw = get_example()
                 hw.data["detectors"] = sim_telescope_detectors(
@@ -91,7 +91,9 @@ class SOFocalplane(Focalplane):
                 )
 
             if bands is not None or wafer_slots is not None or tube_slots is not None:
-                match = {"band": bands.replace(",", "|")}
+                match = dict()
+                if bands is not None:
+                    match["band"] = bands.replace(",", "|")
                 if wafer_slots is not None:
                     match["wafer_slot"] = wafer_slots.split(",")
                 if tube_slots is not None:

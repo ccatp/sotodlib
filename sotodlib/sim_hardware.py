@@ -557,7 +557,7 @@ def sim_wafer_detectors(hw, wafer_slot, platescale, fwhm, band=None,
     chan_per_bias = cardprops["nchannel"] // cardprops["nbias"]
     readout_freq_range=np.linspace(4.,6.,chan_per_AMC)
     readout_freq=np.append(readout_freq_range,readout_freq_range)
-    
+
     doff = 0
     p = 0
     idoff = int(wafer_slot[-2:]) * 10000
@@ -788,7 +788,7 @@ def get_example():
     bnd["C"] = 0.49
     bnd["NET_corr"] = 1.00
     bands["LAT_f290"] = bnd
-    
+
     bnd = OrderedDict()
     bnd["center"] = 25.7
     bnd["low"] = 21.7
@@ -804,7 +804,7 @@ def get_example():
     bnd["C"] = 0.87
     bnd["NET_corr"] = 1.06
     bands["SAT_f030"] = bnd
-    
+
     bnd = OrderedDict()
     bnd["center"] = 38.9
     bnd["low"] = 30.9
@@ -818,7 +818,7 @@ def get_example():
     bnd["C"] = 0.66
     bnd["NET_corr"] = 1.01
     bands["SAT_f040"] = bnd
-    
+
     bnd = OrderedDict()
     bnd["center"] = 92.0
     bnd["low"] = 79.0
@@ -832,7 +832,7 @@ def get_example():
     bnd["C"] = 0.78
     bnd["NET_corr"] = 1.04
     bands["SAT_f090"] = bnd
-    
+
     bnd = OrderedDict()
     bnd["center"] = 147.5
     bnd["low"] = 130.0
@@ -846,7 +846,7 @@ def get_example():
     bnd["C"] = 0.71
     bnd["NET_corr"] = 1.02
     bands["SAT_f150"] = bnd
-    
+
     bnd = OrderedDict()
     bnd["center"] = 225.7
     bnd["low"] = 196.7
@@ -860,7 +860,7 @@ def get_example():
     bnd["C"] = 0.44
     bnd["NET_corr"] = 1.00
     bands["SAT_f230"] = bnd
-    
+
     bnd = OrderedDict()
     bnd["center"] = 285.4
     bnd["low"] = 258.4
@@ -1140,3 +1140,24 @@ def get_example():
     hw.data = cnf
 
     return hw
+
+
+def telescope_tube_wafer():
+    """Global mapping of telescopes, tubes, and wafers used in simulations.
+
+    This mapping is here rather than core.hardware, so that we could put
+    alternate definitions there for actual fielded configurations.
+
+    Returns:
+        (dict):  The mapping
+
+    """
+    hw = get_example()
+    result = dict()
+    for tele_name, tele_props in hw.data["telescopes"].items():
+        tb = dict()
+        for tube_name in tele_props["tube_slots"]:
+            tube_props = hw.data["tube_slots"][tube_name]
+            tb[tube_name] = list(tube_props["wafer_slots"])
+        result[tele_name] = tb
+    return result
