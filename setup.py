@@ -19,10 +19,11 @@ setup_opts = dict()
 setup_opts["entry_points"] = {
     "console_scripts": [
         "so_hardware_sim = sotodlib.scripts.hardware_sim:main",
+        "primecam_hardware_sim = sotodlib.scripts.hardware_sim_primecam:main",
         "so_hardware_plot = sotodlib.scripts.hardware_plot:main",
+        "primecam_hardware_plot = sotodlib.scripts.hardware_plot_primecam:main",
         "so_hardware_trim = sotodlib.scripts.hardware_trim:main",
         "so_hardware_info = sotodlib.scripts.hardware_info:main",
-        "so-metadata = sotodlib.core.metadata.manifest:main",
     ]
 }
 
