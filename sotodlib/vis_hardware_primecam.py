@@ -145,7 +145,7 @@ proceeding with the default matplotlib backend"""
     # Draw wafer labels in the background
     if labels:
         # Compute the font size to use for detector labels
-        fontpix = 0.2 * ypixperdeg
+        fontpix = 0.022 * ypixperdeg
         for k, v in wafer_centers.items():
             ax.text(v["x"] + 0.2, v["y"], k,
                     color='k', fontsize=fontpix, horizontalalignment='center',
