@@ -57,7 +57,7 @@ Visualization
 Example
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Putting the previously discussed tools together, let's make a plot of just detectors on the 350 GHz module that are in wafer 09, and have "A" polarization ("A"/"B" are the 2 orthogonal polarizations).  This is selection is purely to demonstrate the use of the tools.  First simulate the full hardware configuration::
+Putting the previously discussed tools together, let's make a plot of just detectors on the 350 GHz module that are in wafer 09, and have "A" polarization ("A"/"B" are the 2 orthogonal polarizations).  This selection is purely to demonstrate the use of the tools.  First simulate the full hardware configuration::
 
     %> primecam_hardware_sim --out pc_hardware --overwrite
 
